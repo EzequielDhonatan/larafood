@@ -14,7 +14,7 @@ class PlanController extends Controller
      */
     public function index()
     {
-        return view( 'pages.system.panel.plan.index' );
+        return view( 'pages.system.panel.register.plan.index' );
     }
 
     /**

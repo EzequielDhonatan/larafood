@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\System\Panel\{
 
+    Dashboard\DashboardController,
     Plan\PlanController
 
 };
@@ -12,14 +13,16 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::group( [ 'auth:sanctum', 'verified' ], function () {
+Route::group(
+    [
+        'middleware'    => 'auth:sanctum',
+        'verified'
+    ],
+
+    function () {
+
+    Route::get( 'system/panel/dashboard', [ DashboardController::class, 'index' ] )->name( 'dashboard' );
 
     Route::resource( 'system/panel/plan', PlanController::class );
 
-    // Route::get( 'dashboard' )->name( 'dashboard' );
-
 });
-
-// Route::middleware( [ 'auth:sanctum', 'verified' ] )->get( '/dashboard', function () {
-//     return view('dashboard');
-// })->name( 'dashboard' );

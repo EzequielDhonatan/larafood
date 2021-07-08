@@ -5,7 +5,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\System\Panel\{
 
     Dashboard\DashboardController,
-    Plan\PlanController
+
+    /* REGISTER
+    ================================================== */
+    Register\Plan\PlanController
 
 };
 
@@ -23,6 +26,8 @@ Route::group(
 
     Route::get( 'system/panel/dashboard', [ DashboardController::class, 'index' ] )->name( 'dashboard' );
 
+    /* REGISTER
+    ================================================== */
     Route::resource( 'system/panel/plan', PlanController::class );
 
 });

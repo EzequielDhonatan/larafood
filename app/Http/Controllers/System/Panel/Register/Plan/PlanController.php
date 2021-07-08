@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\System\Panel\Plan;
+namespace App\Http\Controllers\System\Panel\Register\Plan;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -14,7 +14,7 @@ class PlanController extends Controller
      */
     public function index()
     {
-        return view( 'pages.system.panel.dashboard.index' );
+        return view( 'pages.system.panel.plan.index' );
     }
 
     /**

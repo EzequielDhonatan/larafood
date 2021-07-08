@@ -16,7 +16,7 @@ class CreatePlansTable extends Migration
         Schema::create('plans', function (Blueprint $table) {
             $table->id();
 
-            /* DADOS DO AEROPORTO
+            /* DADOS DO PLANO
             ================================================== */
             $table->string( 'name' )->unique(); ## NOME
             $table->string( 'url' ); ## URL

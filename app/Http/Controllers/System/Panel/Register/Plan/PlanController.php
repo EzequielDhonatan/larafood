@@ -5,8 +5,16 @@ namespace App\Http\Controllers\System\Panel\Register\Plan;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+use App\Models\System\Panel\Register\Plan\Plan;
+
 class PlanController extends Controller
 {
+    public function __construct( Plan $plan )
+    {
+        $this->repository = $plan;
+
+    } // __construct
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +22,14 @@ class PlanController extends Controller
      */
     public function index()
     {
-        return view( 'pages.system.panel.register.plan.index' );
+        $plans = $this->repository->all();
+
+        return view( [
+
+            'plans' => $plans,
+            'pages.system.panel.register.plan.index'
+
+        ]); // return
     }
 
     /**

@@ -9,6 +9,8 @@ use App\Models\System\Panel\Register\Plan\Plan;
 
 class PlanController extends Controller
 {
+    private $repository;
+
     public function __construct( Plan $plan )
     {
         $this->repository = $plan;
@@ -24,7 +26,14 @@ class PlanController extends Controller
     {
         $plans = $this->repository->all();
 
-        return view( 'pages.system.panel.register.plan.index' ); // return
+        return view(
+
+            'pages.system.panel.register.plan.index',
+            [
+                'plans' => $plans
+            ]
+
+        ); // return
     }
 
     /**

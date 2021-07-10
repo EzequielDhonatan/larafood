@@ -43,7 +43,7 @@ class PlanController extends Controller
      */
     public function create()
     {
-        //
+        return view( 'pages.system.panel.register.plan.create' ); // return
     }
 
     /**

@@ -24,12 +24,7 @@ class PlanController extends Controller
     {
         $plans = $this->repository->all();
 
-        return view( [
-
-            'plans' => $plans,
-            'pages.system.panel.register.plan.index'
-
-        ]); // return
+        return view( 'pages.system.panel.register.plan.index' ); // return
     }
 
     /**

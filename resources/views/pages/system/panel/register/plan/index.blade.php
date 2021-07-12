@@ -138,7 +138,7 @@
                                         <tr>
                                             <td class="text-center" colspan="200">Ops... Nenhum registro encontrado!</td>
                                         </tr>
-                                        p-6 sm:px-20 bg-white border-b border-gray-200
+
                                     @endforelse
 
                                     </tbody> <!-- -->

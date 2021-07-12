@@ -23,16 +23,15 @@ class StoreUpdateFormRequest extends FormRequest
      */
     public function rules()
     {
-        $id = $this->segment( 3 );
+        $url = $this->segment(4);
 
         return
         [
             /* DADOS DO PLANO
             ================================================== */
-            'name'                              => "required|min:3|max:100|unique:plans,name,{$id},id",
-            'price'                             => "required|regex:/^\d+(\.\d{1,2})?$",
-            'url'                               => 'required',
-            'description'                       => 'nullable'
+            'name'                              => "required|min:3|max:255|unique:plans,name,{$url},url",
+            'price'                             => "required|regex:/^\d+(\.\d{1,2})?$/",
+            'description'                       => 'nullable|min:3|max:255'
 
         ]; // return
     }

@@ -1,8 +1,8 @@
 <div class="messages">
-    @if ($errors->any())
+    @if ( $errors->any() )
         <div class="alert alert-warning">
             <ul>
-                @foreach ($errors->all() as $error)
+                @foreach ( $errors->all() as $error )
                     <strong>
                         <li>{{ $error }}</li>
                     </strong>

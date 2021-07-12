@@ -24,6 +24,35 @@
 
                     <div class="table-responsive">
 
+                        <form class="form form-inline" method="POST" action="{{ route( 'plan.search' ) }}">
+
+                            {{ csrf_field() }}
+
+                            <div class="row">
+
+                                <div class="col-sm-12 col-xs-12 col-lg-12 col-md-12">
+
+                                    <div class="input-group">
+
+                                        <div class="form-outline">
+                                            <input type="text" class="form-control" id="filter" name="filter" value="{{ $filters[ 'filter' ] ?? '' }}"/>
+                                            <label class="form-label" for="filter">Nome</label>
+                                        </div>
+
+                                        <button type="submit" class="btn btn-primary">
+                                            <i class="fas fa-search"></i>
+                                        </button>
+
+                                    </div> <!-- input-group -->
+
+                                </div> <!-- -->
+
+                            </div> <!-- row --->
+
+                        </form> <!-- form form-inline -->
+
+                        <br>
+
                         <table class="table table-hover table-sm">
 
                             <thead>
@@ -68,12 +97,10 @@
 
                                 </tr> <!-- -->
 
-                            {!! $plans->links() !!}
-
                             @empty
 
                                 <tr>
-                                    <td colspan="200">Ops... Nenhum registro encontrado!</td>
+                                    <td class="text-center" colspan="200">Ops... Nenhum registro encontrado!</td>
                                 </tr>
 
                             @endforelse
@@ -81,6 +108,16 @@
                             </tbody> <!-- -->
 
                         </table> <!-- -->
+
+                        <div class="card footer">
+
+                            @if( isset( $filters ) )
+                                {!! $plans->appends( $filters )->links() !!}
+                            @else
+                                {!! $plans->links() !!}
+                            @endif
+
+                        </div> <!-- card footer -->
 
                     </div> <!-- table-responsive -->
 

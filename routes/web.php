@@ -29,5 +29,6 @@ Route::group(
     /* REGISTER
     ================================================== */
     Route::resource( 'system/panel/plan', PlanController::class );
+    Route::any( 'system/panel/plan/search', [ PlanController::class, 'search' ] )->name( 'plan.search' );
 
 });

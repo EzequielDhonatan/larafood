@@ -5,8 +5,6 @@ namespace App\Http\Controllers\System\Panel\Register\Plan;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-use Illuminate\Support\Str;
-
 use App\Models\System\Panel\Register\Plan\Plan;
 use App\Http\Requests\System\Panel\Register\Plan\StoreUpdateFormRequest;
 
@@ -57,10 +55,7 @@ class PlanController extends Controller
      */
     public function store( StoreUpdateFormRequest $request)
     {
-        $data           = $request->all(); // Recupera todos os dados do formulário
-        $data[ 'url' ]  = Str::kebab( $request->name ); // Recupera o "name" e converte em "url"
-
-        $this->repository->create( $data ); // Cadastra
+        $this->repository->create( $request->all() ); // Cadastra
 
         return redirect()->route( 'plan.index' ); // Retorna e redireciona para a view "index"
     }
@@ -125,10 +120,7 @@ class PlanController extends Controller
         if ( !$plan )
             return redirect()->back(); // Verifica se não encontrou o registro pela "url" e retorna para a página de origem
 
-        $data           = $request->all(); // Recupera todos os dados do formulário
-        $data[ 'url' ]  = Str::kebab( $request->name ); // Recupera o "name" e converte em "url"
-
-        $plan->update( $data ); // Atualiza
+        $plan->update( $request->all() ); // Atualiza
 
         return redirect()->route( 'plan.index' ); // Retorna e redireciona para a view "index"
     }

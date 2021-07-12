@@ -161,5 +161,7 @@ return [
         'title'                 => 'título',
         'username'              => 'usuário',
         'year'                  => 'ano',
+
+        'price'                 => 'preço',
     ],
 ];

@@ -20,7 +20,7 @@ class CreatePlansTable extends Migration
             ================================================== */
             $table->string( 'name' )->unique(); ## NOME
             $table->string( 'url' ); ## URL
-            $table->string( 'price', 10, 2 ); ## PREÇO
+            $table->double( 'price', 10, 2 ); ## PREÇO
             $table->text( 'description' ); ## DESCRIÇÃO
 
             $table->timestamps();

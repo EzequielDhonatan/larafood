@@ -5,6 +5,8 @@ namespace App\Http\Controllers\System\Panel\Register\Plan;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Str;
+
 use App\Models\System\Panel\Register\Plan\Plan;
 
 class PlanController extends Controller
@@ -54,7 +56,12 @@ class PlanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data           = $request->all();
+        $data[ 'url' ]  = Str::kebab( $request->name );
+
+        $this->repository->create( $data );
+
+        return redirect()->route( 'plan.index' );
     }
 
     /**

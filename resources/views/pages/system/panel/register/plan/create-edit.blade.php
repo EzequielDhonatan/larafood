@@ -32,6 +32,13 @@
 
     </x-slot> <!-- -->
 
+    <div class="messages">
+
+        @include( 'pages.system.panel.includes.alerts' ) <!-- Alerts -->
+        @include( 'pages.system.panel.includes.errors' ) <!-- Errors -->
+
+    </div> <!-- messages -->
+
     <div class="py-12">
 
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">

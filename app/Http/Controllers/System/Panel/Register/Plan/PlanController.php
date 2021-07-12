@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
 use App\Models\System\Panel\Register\Plan\Plan;
+use App\Http\Requests\System\Panel\Register\Plan\StoreUpdateFormRequest;
 
 class PlanController extends Controller
 {
@@ -54,7 +55,7 @@ class PlanController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store( StoreUpdateFormRequest $request)
     {
         $data           = $request->all(); // Recupera todos os dados do formulário
         $data[ 'url' ]  = Str::kebab( $request->name ); // Recupera o "name" e converte em "url"
@@ -117,7 +118,7 @@ class PlanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update( Request $request, $url )
+    public function update( StoreUpdateFormRequest $request, $url )
     {
         $plan = $this->repository->where( 'url', $url )->first(); // Recupera o primeiro registro pela "url"
 

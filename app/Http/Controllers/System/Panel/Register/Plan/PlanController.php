@@ -26,7 +26,7 @@ class PlanController extends Controller
      */
     public function index()
     {
-        $plans = $this->repository->latest()->paginate();
+        $plans = $this->repository->latest()->paginate(); // Recupera, ordena e pagina
 
         return view(
 
@@ -35,7 +35,7 @@ class PlanController extends Controller
                 'plans' => $plans
             ]
 
-        ); // return
+        ); // retorna a view
     }
 
     /**
@@ -45,7 +45,7 @@ class PlanController extends Controller
      */
     public function create()
     {
-        return view( 'pages.system.panel.register.plan.create' ); // return
+        return view( 'pages.system.panel.register.plan.create' ); // Retorna a view
     }
 
     /**
@@ -56,12 +56,12 @@ class PlanController extends Controller
      */
     public function store(Request $request)
     {
-        $data           = $request->all();
-        $data[ 'url' ]  = Str::kebab( $request->name );
+        $data           = $request->all(); // Recupera todos os dados do formulário
+        $data[ 'url' ]  = Str::kebab( $request->name ); // Recupera o "name" e converte em "url"
 
-        $this->repository->create( $data );
+        $this->repository->create( $data ); // Cadastra
 
-        return redirect()->route( 'plan.index' );
+        return redirect()->route( 'plan.index' ); // Retorna e redireciona
     }
 
     /**
@@ -70,9 +70,21 @@ class PlanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show( $url )
     {
-        //
+        $plan = $this->repository->where( 'url', $url )->first(); // Recupera o primeiro registro pela "url"
+
+        if ( !$plan )
+            return redirect()->back(); // Verifica se não encontrou o registro pela "url" e retorna para a página de origem
+
+        return view(
+
+            'pages.system.panel.register.plan.show',
+            [
+                'plan' => $plan
+            ]
+
+        ); // retorna a view
     }
 
     /**

@@ -43,6 +43,20 @@
 
                     </div> <!-- row -->
 
+                    <br>
+
+                    <div class="row">
+
+                        <div class="col-sm-12 col-xs-12 col-lg-12 col-md-12">
+
+                            <div class="form-group">
+                                <a class="btn btn-rounded btn-outline-primary" href="{{ route( 'plan.index' ) }}">Voltar</a>
+                            </div>
+
+                        </div>
+
+                    </div> <!-- row -->
+
                 </div> <!-- p-6 bg-white border-b border-gray-200 -->
 
             </div> <!-- bg-white overflow-hidden shadow-xl sm:rounded-lg -->

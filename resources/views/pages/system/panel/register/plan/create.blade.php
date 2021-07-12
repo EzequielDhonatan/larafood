@@ -21,7 +21,7 @@
 
                             <form method="POST" action="{{ route( 'plan.store' ) }}">
 
-                                @csrf
+                                {{ csrf_field() }}
 
                                 <div class="card">
 

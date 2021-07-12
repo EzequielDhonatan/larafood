@@ -52,9 +52,19 @@
                                     <td>R${{ number_format( $plan->price, 2, ',', ' ' ) }}</td>
 
                                     <td>
+
                                         <a class="fas fa-eye" href="{{ route( 'plan.show', $plan->url ) }}"></a>
-                                        <a class="far fa-trash-alt" href="#"></a>
-                                    </td>
+
+                                        <form method="POST" action="{{ route( 'plan.destroy', $plan->url ) }}">
+
+                                            {{ csrf_field() }}
+                                            {!! method_field( 'DELETE' ) !!}
+
+                                            <button type="submit" class="far fa-trash-alt"></button>
+
+                                        </form> <!-- -->
+
+                                    </td> <!-- -->
 
                                 </tr> <!-- -->
 
@@ -62,9 +72,9 @@
 
                             @empty
 
-                                <div class="text-center">
-                                    <h4>Ops... Nenhum registro encontrado!</h4>
-                                </div>
+                                <tr>
+                                    <td colspan="200">Ops... Nenhum registro encontrado!</td>
+                                </tr>
 
                             @endforelse
 

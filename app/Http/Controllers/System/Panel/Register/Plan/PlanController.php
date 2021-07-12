@@ -64,7 +64,7 @@ class PlanController extends Controller
         return redirect()->route( 'plan.index' ); // Retorna e redireciona
     }
 
-    /**
+    /**plan
      * Display the specified resource.
      *
      * @param  int  $id
@@ -116,9 +116,16 @@ class PlanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy( $url )
     {
-        //
+        $plan = $this->repository->where( 'url', $url )->first(); // Recupera o primeiro registro pela "url"
+
+        if ( !$plan )
+            return redirect()->back(); // Verifica se não encontrou o registro pela "url" e retorna para a página de origem
+
+        $plan->delete(); // Deleta
+
+        return redirect()->route( 'plan.index' );
     }
 
 } // PlanController

@@ -111,10 +111,29 @@
 
                                         <tr>
 
-                                            <th scope="row">{{ $plan->id }}</th>
-                                            <td>{{ $plan->name }}</td>
-                                            <td>{{ $plan->url }}</td>
-                                            <td>R${{ number_format( $plan->price, 2, ',', ' ' ) }}</td>
+                                            <th scope="row">
+                                                <a href="{{ route( 'plan.edit', $plan->url ) }}">
+                                                    {{ $plan->id }}
+                                                </a>
+                                            </th>
+
+                                            <td>
+                                                <a href="{{ route( 'plan.edit', $plan->url ) }}">
+                                                    {{ $plan->name }}
+                                                </a>
+                                            </td>
+
+                                            <td>
+                                                <a href="{{ route( 'plan.edit', $plan->url ) }}">
+                                                    {{ $plan->url }}
+                                                </a>
+                                            </td>
+
+                                            <td>
+                                                <a href="{{ route( 'plan.edit', $plan->url ) }}">
+                                                    R${{ number_format( $plan->price, 2, ',', ' ' ) }}
+                                                </a>
+                                            </td>
 
                                             <td>
 

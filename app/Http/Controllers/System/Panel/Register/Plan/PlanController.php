@@ -89,13 +89,25 @@ class PlanController extends Controller
 
     /**
      * Show the form for editing the specified resource.
-     *
+     *redirect()->route
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit( $url )
     {
-        //
+        $plan = $this->repository->where( 'url', $url )->first(); // Recupera o primeiro registro pela "url"
+
+        if ( !$plan )
+            return redirect()->back(); // Verifica se não encontrou o registro pela "url" e retorna para a página de origem
+
+        return view(
+
+            'pages.system.panel.register.plan.create-edit',
+            [
+                'plan' => $plan
+            ]
+
+        ); // retorna a view
     }
 
     /**

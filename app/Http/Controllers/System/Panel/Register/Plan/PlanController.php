@@ -45,7 +45,7 @@ class PlanController extends Controller
      */
     public function create()
     {
-        return view( 'pages.system.panel.register.plan.create' ); // Retorna a view
+        return view( 'pages.system.panel.register.plan.create-edit' ); // Retorna a view
     }
 
     /**
@@ -61,7 +61,7 @@ class PlanController extends Controller
 
         $this->repository->create( $data ); // Cadastra
 
-        return redirect()->route( 'plan.index' ); // Retorna e redireciona
+        return redirect()->route( 'plan.index' ); // Retorna e redireciona para a view "index"
     }
 
     /**plan
@@ -117,9 +117,19 @@ class PlanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update( Request $request, $url )
     {
-        //
+        $plan = $this->repository->where( 'url', $url )->first(); // Recupera o primeiro registro pela "url"
+
+        if ( !$plan )
+            return redirect()->back(); // Verifica se não encontrou o registro pela "url" e retorna para a página de origem
+
+        $data           = $request->all(); // Recupera todos os dados do formulário
+        $data[ 'url' ]  = Str::kebab( $request->name ); // Recupera o "name" e converte em "url"
+
+        $plan->update( $data ); // Atualiza
+
+        return redirect()->route( 'plan.index' ); // Retorna e redireciona para a view "index"
     }
 
     /**
@@ -137,7 +147,7 @@ class PlanController extends Controller
 
         $plan->delete(); // Deleta
 
-        return redirect()->route( 'plan.index' );
+        return redirect()->route( 'plan.index' ); // Retorna e redireciona para a view "index"
     }
 
     public function search( Request $request )

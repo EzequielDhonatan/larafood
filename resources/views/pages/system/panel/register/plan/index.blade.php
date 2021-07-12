@@ -99,7 +99,7 @@
                                             <th scope="col">Nome</th>
                                             <th scope="col">URL</th>
                                             <th scope="col">Preço</th>
-                                            <th scope="col"></th>
+                                            <th width="100"></th>
 
                                         </tr> <!-- -->
 

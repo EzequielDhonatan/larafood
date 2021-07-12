@@ -118,9 +118,9 @@
 
                                             <td>
 
-                                                <a class="fas fa-eye" href="{{ route( 'plan.show', $plan->url ) }}"></a>
-
                                                 <form method="POST" action="{{ route( 'plan.destroy', $plan->url ) }}">
+
+                                                    <a class="fas fa-eye" href="{{ route( 'plan.show', $plan->url ) }}"></a>
 
                                                     {{ csrf_field() }}
                                                     {!! method_field( 'DELETE' ) !!}

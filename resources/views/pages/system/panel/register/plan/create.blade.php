@@ -26,11 +26,11 @@
 
                 </nav> <!-- breadcrumb -->
 
-            </div> <!-- -->
+            </div> <!-- col-sm-12 col-xs-12 col-lg-12 col-md-12 -->
 
         </div> <!-- row -->
 
-    </x-slot>
+    </x-slot> <!-- -->
 
     <div class="py-12">
 

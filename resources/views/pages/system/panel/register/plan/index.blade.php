@@ -1,38 +1,36 @@
 <x-app-layout>
 
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __( 'Planos' ) }}
-        </h2>
-    </x-slot>
+
+        <div class="row">
+
+            <div class="col-sm-12 col-xs-12 col-lg-12 col-md-12">
+
+                <nav aria-label="breadcrumb">
+
+                    <ol class="breadcrumb">
+
+                        <li class="breadcrumb-item">
+                            <a href="{{ route( 'dashboard' ) }}">Dashboard</a>
+                        </li>
+
+                        <li class="breadcrumb-item active" aria-current="page">
+                            Planos
+                        </li>
+
+                    </ol> <!-- breadcrumb -->
+
+                </nav> <!-- breadcrumb -->
+
+            </div> <!-- col-sm-12 col-xs-12 col-lg-12 col-md-12 -->
+
+        </div> <!-- row -->
+
+    </x-slot> <!-- -->
 
     <div class="py-12">
 
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-
-            <div class="row">
-
-                <div class="col-sm-12 col-xs-12 col-lg-12 col-md-12">
-
-                    <nav aria-label="breadcrumb">
-
-                        <ol class="breadcrumb">
-
-                            <li class="breadcrumb-item">
-                                <a href="{{ route( 'dashboard' ) }}">Dashboard</a>
-                            </li>
-
-                            <li class="breadcrumb-item active" aria-current="page">
-                                Planos
-                            </li>
-
-                        </ol> <!-- breadcrumb -->
-
-                    </nav> <!-- breadcrumb -->
-
-                </div> <!-- -->
-
-            </div> <!-- row -->
 
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
 

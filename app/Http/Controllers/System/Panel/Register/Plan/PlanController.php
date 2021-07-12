@@ -130,7 +130,7 @@ class PlanController extends Controller
 
     public function search( Request $request )
     {
-        $filters = $request->except( '_token' );
+        $filters = $request->except( '_token' ); // Filtra, exceto o "token"
 
         $plans = $this->repository->search( $request->filter ); // Método "search" "Model Plan"
 

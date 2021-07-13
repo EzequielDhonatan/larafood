@@ -152,7 +152,7 @@
                                                     {{ csrf_field() }}
                                                     {!! method_field( 'DELETE' ) !!}
 
-                                                    <button type="submit" class="far fa-trash-alt"></button>
+                                                    <button style="color: red" type="submit" class="far fa-trash-alt"></button>
 
                                                 </form> <!-- -->
 

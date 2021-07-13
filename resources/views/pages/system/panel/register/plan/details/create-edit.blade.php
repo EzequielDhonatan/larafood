@@ -63,7 +63,7 @@
 
                     @else
 
-                        <form class="form" method="POST" action="{{ route( 'detail-plan.store', [ $plan->url, $detail-id ] ) }}">
+                        <form class="form" method="POST" action="{{ route( 'detail-plan.store', $plan->url ) }}">
 
                     @endif
 
@@ -77,7 +77,7 @@
 
                             <div class="form-group">
                                 <button type="submit" class="btn btn-rounded btn-outline-black">Salvar</button>
-                                <a class="btn btn-rounded btn-outline-danger" href="{{ route( 'detail-plan.index', [ $plan->url, $detail->id ] ) }}">Cancelar</a>
+                                <a class="btn btn-rounded btn-outline-danger" href="{{ route( 'detail-plan.index', $plan->url ) }}">Cancelar</a>
                             </div>
 
                         </div>

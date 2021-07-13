@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 use App\Models\System\Panel\Register\DetailPlan\DetailPlan;
 use App\Models\System\Panel\Register\Plan\Plan;
+use App\Http\Requests\System\Panel\Register\Plan\DetailPlan\StoreUpdateFormRequest;
 
 class DetailPlanController extends Controller
 {
@@ -59,7 +60,7 @@ class DetailPlanController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store( Request $request, $urlPlan )
+    public function store( StoreUpdateFormRequest $request, $urlPlan )
     {
         if ( !$plan = $this->plan->where( 'url', $urlPlan )->first() )
             return redirect()->back();
@@ -112,7 +113,7 @@ class DetailPlanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update( Request $request, $urlPlan, $idDetail )
+    public function update( StoreUpdateFormRequest $request, $urlPlan, $idDetail )
     {
         $plan = $this->plan->where( 'url', $urlPlan )->first();
         $detail = $this->repository->find( $idDetail );

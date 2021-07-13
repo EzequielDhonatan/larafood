@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\System\Panel\Register\Plan;
+namespace App\Http\Requests\System\Panel\Register\Plan\DetailPlan;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -23,15 +23,13 @@ class StoreUpdateFormRequest extends FormRequest
      */
     public function rules()
     {
-        $url = $this->segment( 4 );
+        $url = $this->segment( 5 );
 
         return
         [
-            /* DADOS DO PLANO
+            /* DADOS DO DETALHE DO PLANO
             ================================================== */
-            'name'                              => "required|min:3|max:255|unique:plans,name,{$url},url",
-            'price'                             => "required|regex:/^\d+(\.\d{1,2})?$/",
-            'description'                       => 'nullable|min:3|max:255'
+            'name'      => "required"
 
         ]; // return
     } // rules

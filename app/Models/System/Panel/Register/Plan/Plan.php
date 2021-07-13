@@ -27,7 +27,6 @@ class Plan extends Model
     public function details()
     {
         return $this->hasMany( DetailPlan::class );
-
     }
 
 } // Plan

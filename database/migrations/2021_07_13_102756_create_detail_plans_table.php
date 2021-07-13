@@ -18,7 +18,11 @@ class CreateDetailPlansTable extends Migration
 
             /* DADOS DOS DETALHES DO PLANO
             ================================================== */
+            $table->unsignedBigInteger( 'plan_id' ); ## PLANO
+
             $table->string( 'name' ); ## NOME
+
+            $table->foreign( 'plan_id' )->references( 'id' )->on( 'plans' )->onDelete( 'cascade' );
 
             $table->timestamps();
         });
@@ -31,6 +35,6 @@ class CreateDetailPlansTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('detail_plans');
+        Schema::dropIfExists('details_plan');
     }
 }

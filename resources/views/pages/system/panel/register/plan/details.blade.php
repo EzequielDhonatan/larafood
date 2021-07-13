@@ -14,8 +14,16 @@
                             <a href="{{ route( 'dashboard' ) }}">Dashboard</a>
                         </li>
 
+                        <li class="breadcrumb-item">
+                            <a href="{{ route( 'plan.index' ) }}">Planos</a>
+                        </li>
+
+                        <li class="breadcrumb-item">
+                            <a href="{{ route( 'plan.show', $plan->url ) }}">{{ $plan->name }}</a>
+                        </li>
+
                         <li class="breadcrumb-item active" aria-current="page">
-                            Planos
+                            Detalhes do plano
                         </li>
 
                     </ol> <!-- breadcrumb -->
@@ -40,7 +48,7 @@
 
                         <div class="col-sm-12 col-xs-12 col-lg-12 col-md-12">
 
-                            <h1 class="text-center">Planos</h1>
+                            <h1 class="text-center">Detalhes do plano</h1>
 
                             <div class="text-right">
 
@@ -53,33 +61,6 @@
                         </div> <!-- -->
 
                     </div> <!-- row -->
-
-                    <div class="row">
-
-                        <div class="col-sm-12 col-xs-12 col-lg-12 col-md-12">
-
-                            <form class="form form-inline" method="POST" action="{{ route( 'plan.search' ) }}">
-
-                                {{ csrf_field() }}
-
-                                <div class="input-group">
-
-                                    <div class="form-outline">
-                                        <input type="text" class="form-control" id="filter" name="filter" value="{{ $filters[ 'filter' ] ?? '' }}"/>
-                                        <label class="form-label" for="filter">Nome</label>
-                                    </div>
-
-                                    <button type="submit" class="btn btn-primary">
-                                        <i class="fas fa-search"></i>
-                                    </button>
-
-                                </div> <!-- input-group -->
-
-                            </form> <!-- form form-inline -->
-
-                        </div> <!-- -->
-
-                    </div> <!-- row --->
 
                     <br>
 
@@ -95,11 +76,9 @@
 
                                         <tr>
 
-                                            <th scope="col">#</th>
+                                            <th width="100" scope="col">#</th>
                                             <th scope="col">Nome</th>
-                                            <th scope="col">URL</th>
-                                            <th scope="col">Preço</th>
-                                            <th width="100"></th>
+                                            <th></th>
 
                                         </tr> <!-- -->
 
@@ -107,31 +86,19 @@
 
                                     <tbody>
 
-                                    @forelse( $plans as $plan )
+                                    @forelse( $details as $detail )
 
                                         <tr>
 
                                             <th scope="row">
                                                 <a href="{{ route( 'plan.edit', $plan->url ) }}">
-                                                    {{ $plan->id }}
+                                                    {{ $detail->id }}
                                                 </a>
                                             </th>
 
                                             <td>
                                                 <a href="{{ route( 'plan.edit', $plan->url ) }}">
-                                                    {{ $plan->name }}
-                                                </a>
-                                            </td>
-
-                                            <td>
-                                                <a href="{{ route( 'plan.edit', $plan->url ) }}">
-                                                    {{ $plan->url }}
-                                                </a>
-                                            </td>
-
-                                            <td>
-                                                <a href="{{ route( 'plan.edit', $plan->url ) }}">
-                                                    R${{ number_format( $plan->price, 2, ',', ' ' ) }}
+                                                    {{ $detail->name }}
                                                 </a>
                                             </td>
 
@@ -139,8 +106,7 @@
 
                                                 <form method="POST" action="{{ route( 'plan.destroy', $plan->url ) }}">
 
-                                                    <a style="padding-right: 5px;" class="fas fa-info" href="{{ route( 'detail-plan.index', $plan->url ) }}"></a>
-                                                    <a style="padding-right: 5px;" class="fas fa-eye" href="{{ route( 'plan.show', $plan->url ) }}"></a>
+                                                    <a class="fas fa-eye" href="{{ route( 'plan.show', $plan->url ) }}"></a>
 
                                                     {{ csrf_field() }}
                                                     {!! method_field( 'DELETE' ) !!}
@@ -174,9 +140,9 @@
                     <div class="card footer">
 
                         @if( isset( $filters ) )
-                            {!! $plans->appends( $filters )->links() !!}
+                            {!! $details->appends( $filters )->links() !!}
                         @else
-                            {!! $plans->links() !!}
+                            {!! $details->links() !!}
                         @endif
 
                     </div> <!-- card footer -->

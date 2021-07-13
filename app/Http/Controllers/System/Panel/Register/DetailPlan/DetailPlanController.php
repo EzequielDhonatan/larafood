@@ -71,7 +71,7 @@ class DetailPlanController extends Controller
 
         $plan->details()->create( $request->all() );
 
-        return redirect()->route( 'detail-plan.index', $plan->url );
+        return redirect()->route( 'detail-plan.index', $plan->url )->with( 'success', 'Cadastro realizado com sucesso!' );;
     }
 
     /**
@@ -80,9 +80,19 @@ class DetailPlanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show( $urlPlan, $idDetail )
     {
-        //
+        $plan = $this->plan->where( 'url', $urlPlan )->first();
+        $detail = $this->repository->find( $idDetail );
+
+        if ( !$plan || !$idDetail )
+            return redirect()->back();
+
+        return view( 'pages.system.panel.register.plan.details.show',
+        [
+            'plan'          => $plan,
+            'detail'        => $detail
+        ]);
     }
 
     /**
@@ -123,7 +133,7 @@ class DetailPlanController extends Controller
 
         $detail->update( $request->all() );
 
-        return redirect()->route( 'detail-plan.index', $plan->url );
+        return redirect()->route( 'detail-plan.index', $plan->url )->with( 'success', 'Registro atualizado com sucesso!' );;
     }
 
     /**
@@ -132,8 +142,17 @@ class DetailPlanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy( $urlPlan, $idDetail )
     {
-        //
+        $plan = $this->plan->where( 'url', $urlPlan )->first();
+        $detail = $this->repository->find( $idDetail );
+
+        if ( !$plan || !$idDetail )
+            return redirect()->back();
+
+        $detail->delete();
+
+        return redirect()->route( 'detail-plan.index', $plan->url )->with( 'success', 'Registro deletado com sucesso!' );
     }
-}
+
+} // DetailPlanController

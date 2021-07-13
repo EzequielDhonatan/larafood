@@ -36,6 +36,13 @@
 
     </x-slot> <!-- -->
 
+    <div class="messages">
+
+        @include( 'pages.system.panel.includes.alerts' ) <!-- Alerts -->
+        @include( 'pages.system.panel.includes.errors' ) <!-- Errors -->
+
+    </div> <!-- messages -->
+
     <div class="py-12">
 
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -104,9 +111,9 @@
 
                                             <td>
 
-                                                <form method="POST" action="{{ route( 'plan.destroy', $plan->url ) }}">
+                                                <form method="POST" action="{{ route( 'detail-plan.destroy', [ $plan->url, $detail->id ] ) }}">
 
-                                                    <a class="fas fa-eye" href="{{ route( 'plan.show', $plan->url ) }}"></a>
+                                                    <a class="fas fa-eye" href="{{ route( 'detail-plan.show', [ $plan->url, $detail->id ] ) }}"></a>
 
                                                     {{ csrf_field() }}
                                                     {!! method_field( 'DELETE' ) !!}

@@ -18,8 +18,16 @@
                             <a href="{{ route( 'plan.index' ) }}">Planos</a>
                         </li>
 
+                        <li class="breadcrumb-item">
+                            <a href="{{ route( 'plan.show', $plan->url ) }}">{{ $plan->name }}</a>
+                        </li>
+
+                        <li class="breadcrumb-item">
+                            <a href="{{ route( 'detail-plan.index', $plan->url ) }}">Detalhes</a>
+                        </li>
+
                         <li class="breadcrumb-item active" aria-current="page">
-                            Detalhes do plano
+                            Detalhes do detalhe do plano
                         </li>
 
                     </ol> <!-- breadcrumb -->
@@ -54,19 +62,7 @@
                             <ul>
 
                                 <li>
-                                    <strong>Nome:</strong> {{ $plan->name }}
-                                </li>
-
-                                <li>
-                                    <strong>URL:</strong> {{ $plan->url }}
-                                </li>
-
-                                <li>
-                                    <strong>Preço:</strong> R${{ number_format( $plan->price, 2, ',', ' ' ) }}
-                                </li>
-
-                                <li>
-                                    <strong>Descrição:</strong> {{ $plan->description }}
+                                    <strong>Nome:</strong> {{ $detail->name }}
                                 </li>
 
                             </ul> <!-- -->
@@ -82,10 +78,12 @@
                         <div class="col-sm-12 col-xs-12 col-lg-12 col-md-12">
 
                             <div class="form-group">
-                                <a class="btn btn-rounded btn-outline-primary" href="{{ route( 'plan.index' ) }}">Voltar</a>
+                                <a class="btn btn-rounded btn-outline-primary" href="{{ route( 'detail-plan.index', $plan->url ) }}">
+                                    Voltar
+                                </a>
                             </div>
 
-                        </div>
+                        </div> <!-- -->
 
                     </div> <!-- row -->
 

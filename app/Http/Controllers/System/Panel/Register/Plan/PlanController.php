@@ -133,10 +133,13 @@ class PlanController extends Controller
      */
     public function destroy( $url )
     {
-        $plan = $this->repository->where( 'url', $url )->first(); // Recupera o primeiro registro pela "url"
+        $plan = $this->repository->with( 'details' )->where( 'url', $url )->first(); // Recupera o primeiro registro pela "url"
 
         if ( !$plan )
             return redirect()->back(); // Verifica se não encontrou o registro pela "url" e retorna para a página de origem
+
+        if ( $plan->details->count() > 0 )
+            return redirect()->back()->with( 'error', 'Ops... Existem detalhes vinculados a esse plano, portanto o mesmo não pode ser deletado!' );
 
         $plan->delete(); // Deleta
 

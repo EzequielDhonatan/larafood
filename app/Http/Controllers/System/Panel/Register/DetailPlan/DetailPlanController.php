@@ -90,9 +90,19 @@ class DetailPlanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit( $urlPlan, $idDetail )
     {
-        //
+        $plan = $this->plan->where( 'url', $urlPlan )->first();
+        $detail = $this->repository->find( $idDetail );
+
+        if ( !$plan || !$idDetail )
+            return redirect()->back();
+
+        return view( 'pages.system.panel.register.plan.details.create-edit',
+        [
+            'plan'          => $plan,
+            'detail'        => $detail
+        ]);
     }
 
     /**
@@ -102,9 +112,17 @@ class DetailPlanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update( Request $request, $urlPlan, $idDetail )
     {
-        //
+        $plan = $this->plan->where( 'url', $urlPlan )->first();
+        $detail = $this->repository->find( $idDetail );
+
+        if ( !$plan || !$idDetail )
+            return redirect()->back();
+
+        $detail->update( $request->all() );
+
+        return redirect()->route( 'detail-plan.index', $plan->url );
     }
 
     /**

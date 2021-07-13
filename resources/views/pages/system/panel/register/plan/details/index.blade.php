@@ -91,13 +91,13 @@
                                         <tr>
 
                                             <th scope="row">
-                                                <a href="{{ route( 'plan.edit', $plan->url ) }}">
+                                                <a href="{{ route( 'detail-plan.edit', [ $plan->url, $detail->id ] ) }}">
                                                     {{ $detail->id }}
                                                 </a>
                                             </th>
 
                                             <td>
-                                                <a href="{{ route( 'plan.edit', $plan->url ) }}">
+                                                <a href="{{ route( 'detail-plan.edit', [ $plan->url, $detail->id ] ) }}">
                                                     {{ $detail->name }}
                                                 </a>
                                             </td>

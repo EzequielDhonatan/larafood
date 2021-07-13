@@ -55,15 +55,15 @@
 
                 <div class="p-6 bg-white border-b border-gray-200">
 
-                    @if ( isset( $details ) )
+                    @if ( isset( $detail ) )
 
-                        <form class="form" method="POST" action="{{ route( 'detail-plan.update', $plan->url ) }}">
+                        <form class="form" method="POST" action="{{ route( 'detail-plan.update', [ $plan->url, $detail->id ] ) }}">
 
                         {!! method_field('PUT') !!}
 
                     @else
 
-                        <form class="form" method="POST" action="{{ route( 'detail-plan.store', $plan->url ) }}">
+                        <form class="form" method="POST" action="{{ route( 'detail-plan.store', [ $plan->url, $detail-id ] ) }}">
 
                     @endif
 
@@ -77,7 +77,7 @@
 
                             <div class="form-group">
                                 <button type="submit" class="btn btn-rounded btn-outline-black">Salvar</button>
-                                <a class="btn btn-rounded btn-outline-danger" href="{{ route( 'detail-plan.index', $plan->url ) }}">Cancelar</a>
+                                <a class="btn btn-rounded btn-outline-danger" href="{{ route( 'detail-plan.index', [ $plan->url, $detail->id ] ) }}">Cancelar</a>
                             </div>
 
                         </div>

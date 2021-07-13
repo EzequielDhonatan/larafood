@@ -28,9 +28,9 @@ class DetailPlanController extends Controller
         if ( !$plan = $this->plan->where( 'url', $urlPlan )->first() )
             return redirect()->back();
 
-        $details = $plan->details()->paginate();
+        $details = $plan->details()->latest()->paginate();
 
-        return view( 'pages.system.panel.register.plan.details',
+        return view( 'pages.system.panel.register.plan.details.index',
         [
             'plan'      => $plan,
             'details'   => $details
@@ -42,9 +42,15 @@ class DetailPlanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create( $urlPlan )
     {
-        //
+        if ( !$plan = $this->plan->where( 'url', $urlPlan )->first() )
+            return redirect()->back();
+
+        return view( 'pages.system.panel.register.plan.details.create-edit',
+        [
+            'plan'      => $plan
+        ]);
     }
 
     /**
@@ -53,9 +59,18 @@ class DetailPlanController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store( Request $request, $urlPlan )
     {
-        //
+        if ( !$plan = $this->plan->where( 'url', $urlPlan )->first() )
+            return redirect()->back();
+
+        // $data = $request->all();
+        // $data[ 'plan_id' ] = $plan->id;
+        // $this->repository->create( $data );
+
+        $plan->details()->create( $request->all() );
+
+        return redirect()->route( 'detail-plan.index', $plan->url );
     }
 
     /**

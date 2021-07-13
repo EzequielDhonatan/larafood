@@ -52,7 +52,7 @@
 
                             <div class="text-right">
 
-                                <a class="btn btn-rounded btn-outline-black" href="{{  route( 'plan.create' ) }}">
+                                <a class="btn btn-rounded btn-outline-black" href="{{  route( 'detail-plan.create', $plan->url ) }}">
                                     Novo
                                 </a>
 

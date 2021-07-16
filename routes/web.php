@@ -18,10 +18,6 @@ use App\Http\Controllers\System\Panel\{
 
 };
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Route::group(
     [
         'middleware'    => 'auth:sanctum',
@@ -32,7 +28,7 @@ Route::group(
 
     /* DASHBOARD
     ================================================== */
-    Route::get( 'system/panel/dashboard', [ DashboardController::class, 'index' ] )->name( 'dashboard' );
+    Route::get( '', [ DashboardController::class, 'index' ] )->name( 'dashboard' );
 
     /* REGISTER
     ================================================== */

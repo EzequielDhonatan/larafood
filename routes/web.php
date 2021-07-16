@@ -32,11 +32,8 @@ Route::group(
 
     /* REGISTER
     ================================================== */
-    Route::resource( 'system/panel/plan', PlanController::class ); ## PLAN
-    Route::any( 'system/panel/plan/search', [ PlanController::class, 'search' ] )->name( 'plan.search' ); ## PLAN SEARCH
-    Route::resource( 'system/panel/plan/{url}/detail-plan', DetailPlanController::class ); ## DETAIL PLAN
-
-    /* MANAGEMENT
-    ================================================== */
+    Route::resource( 'system/panel/register/plan', PlanController::class ); ## PLAN
+    Route::any( 'system/panel/register/plan/search', [ PlanController::class, 'search' ] )->name( 'plan.search' ); ## PLAN SEARCH
+    Route::resource( 'system/panel/register/plan/{url}/detail-plan', DetailPlanController::class ); ## DETAIL PLAN
 
 });

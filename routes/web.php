@@ -13,9 +13,6 @@ use App\Http\Controllers\System\Panel\{
     Register\Plan\PlanController, ## PLAN
     Register\DetailPlan\DetailPlanController, ## DETAIL PLAN
 
-    /* MANAGEMENT
-    ================================================== */
-
 };
 
 Route::group(

@@ -15,6 +15,8 @@ use App\Http\Controllers\{
     Register\Plan\PlanController, ## PLAN
     Register\DetailPlan\DetailPlanController, ## DETAIL PLAN
 
+    Register\Category\CategoryController, ## CATEGORY
+
 };
 
 /* SITE
@@ -39,5 +41,8 @@ Route::group(
     Route::resource( 'register/plan', PlanController::class ); ## PLAN
     Route::any( 'register/plan/search', [ PlanController::class, 'search' ] )->name( 'plan.search' ); ## PLAN SEARCH
     Route::resource( 'register/plan/{url}/detail-plan', DetailPlanController::class ); ## DETAIL PLAN
+
+    Route::resource( 'register/category', CategoryController::class ); ## CATEGORY
+    Route::any( 'register/category/search', [ CategoryController::class, 'search' ] )->name( 'category.search' ); ## CATEGORY SEARCH
 
 });

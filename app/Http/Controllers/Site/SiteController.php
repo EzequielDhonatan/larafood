@@ -1,0 +1,19 @@
+<?php
+
+namespace App\Http\Controllers\Site;
+
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+
+use App\Models\Register\Plan\Plan;
+
+class SiteController extends Controller
+{
+    public function index()
+    {
+        $plans = Plan::with( 'details' )->get();
+
+        return view( 'site.pages.home.index', compact( 'plans' ) );
+    }
+
+} // SiteController

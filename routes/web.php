@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\{
 
+    Site\SiteController,
+
     /* DASHBOARD
     ================================================== */
     Dashboard\DashboardController,
@@ -14,6 +16,10 @@ use App\Http\Controllers\{
     Register\DetailPlan\DetailPlanController, ## DETAIL PLAN
 
 };
+
+/* DASHBOARD
+================================================== */
+Route::get( '', [ SiteController::class, 'index' ] )->name( 'site.home' );
 
 Route::group(
     [

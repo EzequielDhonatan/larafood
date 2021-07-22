@@ -24,7 +24,7 @@ class CreateTenantsTable extends Migration
             $table->string( 'name' )->unique(); ## NOME
             $table->string( 'url' )->unique(); ## URL
             $table->string( 'email' )->unique(); ## E-MAIL
-            $table->string( 'logo' )->unique(); ## LOGO
+            $table->string( 'logo' )->nullable(); ## LOGO
 
             // Status tenant ( Se inativar 'N' ele perde o acesso ao sistema )
             $table->enum( 'active', [ 'Y', 'N' ] )->default( 'Y' ); ## ATIVO?

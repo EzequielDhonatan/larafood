@@ -17,9 +17,10 @@ use App\Http\Controllers\{
 
 };
 
-/* DASHBOARD
+/* SITE
 ================================================== */
-Route::get( '', [ SiteController::class, 'index' ] )->name( 'site.home' );
+Route::get( '', [ SiteController::class, 'index' ] )->name( 'site.home' ); ## HOME
+Route::get( '/plan/{url}', [ SiteController::class, 'plan' ] )->name( 'plan.subscription' ); ## PLAN
 
 Route::group(
     [

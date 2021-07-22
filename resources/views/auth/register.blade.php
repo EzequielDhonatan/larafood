@@ -7,11 +7,27 @@
         <x-jet-validation-errors class="mb-4" />
 
         <form method="POST" action="{{ route('register') }}">
+
             @csrf
 
-            <div>
+            <p>
+                <strong>Plano: </strong>
+                {{ session( 'plan' )->name ?? '' }}
+            </p>
+
+            <div class="mt-4">
+                <x-jet-label for="cnpj" value="{{ __('CNPJ') }}" />
+                <x-jet-input id="cnpj" class="block mt-1 w-full" type="text" name="cnpj" :value="old('cnpj')" required autofocus autocomplete="cnpj" />
+            </div>
+
+            <div class="mt-4">
+                <x-jet-label for="empresa" value="{{ __('Empresa') }}" />
+                <x-jet-input id="empresa" class="block mt-1 w-full" type="text" name="empresa" :value="old('empresa')" required autocomplete="empresa" />
+            </div>
+
+            <div class="mt-4">
                 <x-jet-label for="name" value="{{ __('Nome') }}" />
-                <x-jet-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
+                <x-jet-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autocomplete="name" />
             </div>
 
             <div class="mt-4">

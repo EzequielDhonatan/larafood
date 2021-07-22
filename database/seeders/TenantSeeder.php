@@ -25,10 +25,9 @@ class TenantSeeder extends Seeder
             'cnpj'      => '99.999.999-99',
             'name'      => 'Ezequiel Dhonatan',
             'url'       => 'ezequiel-dhonatan',
-            'email'     => 'Suporte@ezequieldhonatan.com.br',
-            'logo'      => 'logo'
+            'email'     => 'Suporte@ezequieldhonatan.com.br'
 
-        ]); // User::create
+        ]);
 
     } // run
 

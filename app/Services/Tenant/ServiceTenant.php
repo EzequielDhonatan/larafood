@@ -3,7 +3,6 @@
 namespace App\Services\Tenant;
 
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Str;
 
 use App\Models\Register\Plan\Plan;
 use App\Models\User;
@@ -33,7 +32,6 @@ class ServiceTenant
 
             'cnpj'              => $this->input[ 'cnpj' ],
             'name'              => $this->input[ 'empresa' ],
-            'url'               => Str::kebab( $this->input[ 'empresa' ] ),
             'email'             => $this->input[ 'email' ],
             'subscription'      => now(),
             'expires_at'        => now()->addDays( 7 )

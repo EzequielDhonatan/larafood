@@ -20,6 +20,8 @@ class CreateTenantsTable extends Migration
             ================================================== */
             $table->unsignedBigInteger( 'plan_id' ); ## PLANO
 
+            $table->uuid( 'uuid' ); ## UUID
+
             $table->string( 'cnpj' )->unique(); ## CNPJ
             $table->string( 'name' )->unique(); ## NOME
             $table->string( 'url' )->unique(); ## URL

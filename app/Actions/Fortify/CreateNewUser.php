@@ -2,13 +2,11 @@
 
 namespace App\Actions\Fortify;
 
-use App\Models\User;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
 use Laravel\Jetstream\Jetstream;
 
-use Illuminate\Support\Str;
+use App\Services\Tenant\ServiceTenant;
 
 class CreateNewUser implements CreatesNewUsers
 {
@@ -33,29 +31,13 @@ class CreateNewUser implements CreatesNewUsers
 
         ])->validate();
 
-
         if ( !$plan = session( 'plan' ) )
             return redirect()->route( 'site.home' );
 
-        $tenant = $plan->tenants()->create([
-
-            'cnpj'              => $input[ 'cnpj' ],
-            'name'              => $input[ 'empresa' ],
-            'url'               => Str::kebab( $input[ 'empresa' ] ),
-            'email'             => $input[ 'email' ],
-            'subscription'      => now(),
-            'expires_at'        => now()->addDays( 7 )
-
-        ]);
-
-        $user = $tenant->users()->create([
-
-            'name'      => $input[ 'name' ],
-            'email'     => $input[ 'email' ],
-            'password'  => Hash::make( $input[ 'password' ] ),
-
-        ]);
+        $serviceTenant = app( ServiceTenant::class );
+        $user = $serviceTenant->make( $plan, $input );
 
         return $user;
-    }
+
+    } // create
 }

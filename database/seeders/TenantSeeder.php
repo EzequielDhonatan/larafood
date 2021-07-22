@@ -5,11 +5,11 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 
 use App\Models\{
-    User,
+    Register\Plan\Plan,
     Tenant\Tenant
 };
 
-class UserSeeder extends Seeder
+class TenantSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -18,16 +18,18 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        $tanant = Tenant::first();
+        $plan = Plan::first();
 
-        $tanant->users()->create([
+        $plan->tenants()->create([
 
+            'cnpj'      => '99.999.999-99',
             'name'      => 'Ezequiel Dhonatan',
+            'url'       => 'ezequiel-dhonatan',
             'email'     => 'Suporte@ezequieldhonatan.com.br',
-            'password'  => bcrypt( '123456789' )
+            'logo'      => 'logo'
 
         ]); // User::create
 
     } // run
 
-} // UserSeeder
+} // TenantSeeder

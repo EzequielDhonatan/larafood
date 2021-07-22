@@ -5,7 +5,10 @@ namespace App\Models\Register\Plan;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-use App\Models\Register\DetailPlan\DetailPlan;
+use App\Models\{
+    Register\DetailPlan\DetailPlan,
+    Tenant\Tenant
+};
 
 class Plan extends Model
 {
@@ -27,6 +30,11 @@ class Plan extends Model
     public function details()
     {
         return $this->hasMany( DetailPlan::class );
+    }
+
+    public function tenants()
+    {
+        return $this->hasMany( Tenant::class );
     }
 
 } // Plan

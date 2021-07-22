@@ -25,7 +25,7 @@ Route::group(
 
     /* DASHBOARD
     ================================================== */
-    Route::get( 'dashboard', [ DashboardController::class, 'index' ] )->name( 'dashboard' );
+    Route::get( '', [ DashboardController::class, 'index' ] )->name( 'dashboard' );
 
     /* REGISTER
     ================================================== */

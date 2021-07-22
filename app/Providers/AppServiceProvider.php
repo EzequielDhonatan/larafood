@@ -4,8 +4,8 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
-use App\Models\System\Panel\Register\Plan\Plan;
-use App\Observers\System\Panel\Register\PlanObserver;
+use App\Models\Register\Plan\Plan;
+use App\Observers\Register\PlanObserver;
 
 class AppServiceProvider extends ServiceProvider
 {

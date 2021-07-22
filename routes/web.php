@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\System\Panel\{
+use App\Http\Controllers\{
 
     /* DASHBOARD
     ================================================== */
@@ -29,8 +29,8 @@ Route::group(
 
     /* REGISTER
     ================================================== */
-    Route::resource( 'system/panel/register/plan', PlanController::class ); ## PLAN
-    Route::any( 'system/panel/register/plan/search', [ PlanController::class, 'search' ] )->name( 'plan.search' ); ## PLAN SEARCH
-    Route::resource( 'system/panel/register/plan/{url}/detail-plan', DetailPlanController::class ); ## DETAIL PLAN
+    Route::resource( 'register/plan', PlanController::class ); ## PLAN
+    Route::any( 'register/plan/search', [ PlanController::class, 'search' ] )->name( 'plan.search' ); ## PLAN SEARCH
+    Route::resource( 'register/plan/{url}/detail-plan', DetailPlanController::class ); ## DETAIL PLAN
 
 });

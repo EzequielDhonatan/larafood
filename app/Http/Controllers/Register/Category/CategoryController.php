@@ -91,9 +91,16 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update( Request $request, $id )
     {
-        //
+        $category = $this->repository->find( $id ); // Recupera o pelo "$id"
+
+        if ( !$category )
+            return redirect()->back(); // Verifica se não encontrou o registro pelo "$id" e retorna para a página de origem
+
+        $category->update( $request->all() ); // Atualiza
+
+        return redirect()->route( 'category.index' ); // Retorna e redireciona para a view "index"
     }
 
     /**

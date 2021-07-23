@@ -58,9 +58,14 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show( $id )
     {
-        //
+        $category = $this->repository->find( $id ); // Recupera o pelo "$id"
+
+        if ( !$category )
+            return redirect()->back(); // Verifica se não encontrou o registro pelo "$id" e retorna para a página de origem
+
+        return view( 'pages.register.category.show', compact( 'category' ) ); // retorna a view
     }
 
     /**

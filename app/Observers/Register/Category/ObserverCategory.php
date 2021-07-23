@@ -5,7 +5,7 @@ namespace App\Observers\Register\Category;
 use App\Models\Register\Category\Category;
 use Illuminate\Support\Str;
 
-class CategoryObserver
+class ObserverCategory
 {
     /**
      * Handle the Category "created" event.
@@ -29,4 +29,4 @@ class CategoryObserver
         $category->url = Str::kebab( $category->name ); // Recupera o "name" da categoria e converte em "url"
     }
 
-} // CategoryObserver
+} // ObserverCategory

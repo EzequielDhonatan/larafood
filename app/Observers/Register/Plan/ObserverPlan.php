@@ -5,7 +5,7 @@ namespace App\Observers\Register\Plan;
 use App\Models\Register\Plan\Plan;
 use Illuminate\Support\Str;
 
-class PlanObserver
+class ObserverPlan
 {
     /**
      * Handle the Plan "creating" event.
@@ -29,4 +29,4 @@ class PlanObserver
         $plan->url = Str::kebab( $plan->name ); // Recupera o "name" do plano e converte em "url"
     }
 
-} // PlanObserver
+} // ObserverPlan

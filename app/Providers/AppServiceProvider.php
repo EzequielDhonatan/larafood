@@ -11,9 +11,9 @@ use App\Models\{
 };
 
 use App\Observers\{
-    Register\Plan\PlanObserver,
-    Tenant\TenantObserver,
-    Register\Category\CategoryObserver
+    Register\Plan\ObserverPlan,
+    Tenant\ObserverTenant,
+    Register\Category\ObserverCategory
 };
 
 class AppServiceProvider extends ServiceProvider
@@ -35,9 +35,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Plan::observe( PlanObserver::class );
-        Tenant::observe( TenantObserver::class );
-        Category::observe( CategoryObserver::class );
+        Plan::observe( ObserverPlan::class );
+        Tenant::observe( ObserverTenant::class );
+        Category::observe( ObserverCategory::class );
     }
 
 } // AppServiceProvider

@@ -19,7 +19,7 @@ class CreateProductsTable extends Migration
             /* DADOS DO PRODUTO
             ================================================== */
             $table->unsignedBigInteger( 'tenant_id' ); ## TENANT
-            $table->unsignedBigInteger( 'category_id' ); ## CATEGORY
+            $table->unsignedBigInteger( 'category_id' )->nullable(); ## CATEGORY
 
             $table->string( 'title' )->unique(); ## TÍTULO
             $table->string( 'flag' )->unique(); ## FLAG

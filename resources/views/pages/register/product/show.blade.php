@@ -15,11 +15,11 @@
                         </li>
 
                         <li class="breadcrumb-item">
-                            <a href="{{ route( 'product.index' ) }}">Categorias</a>
+                            <a href="{{ route( 'product.index' ) }}">Produtos</a>
                         </li>
 
                         <li class="breadcrumb-item active" aria-current="page">
-                            Detalhes do categoria
+                            Detalhes do produto
                         </li>
 
                     </ol> <!-- breadcrumb -->
@@ -54,7 +54,7 @@
                             <ul>
 
                                 <li>
-                                    {{ $product->image }}
+                                <img style="max-width: 90px;" alt="{{ $product->title }}" src="{{ url( "storage/{$product->image}" ) }}">
                                 </li>
 
                                 <li>

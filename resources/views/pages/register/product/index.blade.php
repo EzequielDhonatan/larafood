@@ -102,7 +102,8 @@
 
                                         <tr>
 
-                                            <th width="100" scope="col">#</th>
+                                            <th width="100" scope="col"></th>
+                                            <th scope="col">#</th>
                                             <th scope="col">Nome</th>
                                             <th scope="col">Preço</th>
                                             <th scope="col"></th>
@@ -119,13 +120,19 @@
 
                                             <th scope="row">
                                                 <a href="{{ route( 'product.edit', $product->id ) }}">
+                                                    <img style="max-width: 90px;" alt="{{ $product->title }}" src="{{ url( "storage/{$product->image}" ) }}">
+                                                </a>
+                                            </th>
+
+                                            <th>
+                                                <a href="{{ route( 'product.edit', $product->id ) }}">
                                                     {{ $product->id }}
                                                 </a>
                                             </th>
 
                                             <td>
                                                 <a href="{{ route( 'product.edit', $product->id ) }}">
-                                                    {{ $product->name }}
+                                                    {{ $product->title }}
                                                 </a>
                                             </td>
 

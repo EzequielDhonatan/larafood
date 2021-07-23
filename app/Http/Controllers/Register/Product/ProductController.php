@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 use App\Models\Register\Product\Product;
 use App\Http\Requests\Register\Product\StoreUpdateFormRequest;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -51,7 +52,7 @@ class ProductController extends Controller
         $input = $request->all(); // Recupera todos os dados do input
         $tenant = auth()->user()->tenant; // Recupera o tenant logado
 
-        // Verifica se exite alguma imagem e se o formato da imagem é válido
+        // Verifica
         if ( $request->hasFile( 'image' ) && $request->image->isValid() ) {
             $input[ 'image' ] = $request->image->store( "tenants/{$tenant->uuid}/products" ); // Salva a imagem
         }
@@ -107,8 +108,13 @@ class ProductController extends Controller
         $input = $request->all(); // Recupera todos os dados do input
         $tenant = auth()->user()->tenant; // Recupera o tenant logado
 
-        // Verifica se exite alguma imagem e se o formato da imagem é válido
+        // Verifica
         if ( $request->hasFile( 'image' ) && $request->image->isValid() ) {
+
+            if ( Storage::exists( $product->image ) ) {
+                Storage::delete( $product->image );
+            }
+
             $input[ 'image' ] = $request->image->store( "tenants/{$tenant->uuid}/products" ); // Salva a imagem
         }
 
@@ -128,6 +134,10 @@ class ProductController extends Controller
         // Verifica se não encontrou o registro pelo "$id"
         if ( !$product = $this->repository->find( $id ) )
             return redirect()->back(); // Retorna para a página de origem
+
+        if ( Storage::exists( $product->image ) ) {
+                Storage::delete( $product->image );
+        }
 
         $product->delete(); // Deleta o registro
 

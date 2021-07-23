@@ -100,7 +100,7 @@ class CategoryController extends Controller
 
         $category->update( $request->all() ); // Atualiza
 
-        return redirect()->route( 'categorys.index' ); // Retorna e redireciona para a view "index"
+        return redirect()->route( 'category.index' ); // Retorna e redireciona para a view "index"
     }
 
     /**
@@ -118,12 +118,16 @@ class CategoryController extends Controller
 
         $category->delete(); // Deleta
 
-        return redirect()->route( 'categorys.index' ); // Retorna e redireciona para a view "index"
+        return redirect()->route( 'category.index' ); // Retorna e redireciona para a view "index"
     }
 
     public function search( Request $request )
     {
-        # code...
+        $filters = $request->except( '_token' ); // Filtra, exceto o "token"
+
+        $categories = $this->repository->search( $request->filter ); // Método "search" "Model Plan"
+
+        return view( 'pages.register.category.index', compact( 'categories', 'filters' ) ); // retorna a view
     }
 
 } // CategoryController

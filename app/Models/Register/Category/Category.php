@@ -14,4 +14,15 @@ class Category extends Model
 
     protected $fillable = [ 'name', 'url', 'description' ];
 
+    public function search( $filter = null )
+    {
+        $results = $this->where( 'name', 'LIKE', "%{$filter}%" )
+                        ->orWhere( 'description', 'LIKE', "%{$filter}%" )
+                        ->latest()
+                        ->paginate();
+
+        return $results;
+
+    } // search
+
 } // Category

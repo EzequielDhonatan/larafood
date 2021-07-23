@@ -49,13 +49,13 @@
 
                     @if ( isset( $product ) )
 
-                        <form class="form" method="POST" action="{{ route( 'product.update', $product->id ) }}">
+                        <form class="form" method="POST" action="{{ route( 'product.update', $product->id ) }}" enctype="multipart/form-data">
 
                         {!! method_field('PUT') !!}
 
                     @else
 
-                        <form class="form" method="POST" action="{{ route( 'product.store' ) }}">
+                        <form class="form" method="POST" action="{{ route( 'product.store' ) }}" enctype="multipart/form-data">
 
                     @endif
 

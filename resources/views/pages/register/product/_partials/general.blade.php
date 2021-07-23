@@ -3,7 +3,22 @@
     <div class="col-sm-10 col-xs-10 col-lg-10 col-md-10">
 
         <div class="form-group">
-            <label for="title">Nome</label>
+            <label for="image">Imagem</label>
+            <input type="file" class="form-control" name="image" id="image">
+        </div>
+
+    </div>
+
+</div> <!-- row -->
+
+<br>
+
+<div class="row">
+
+    <div class="col-sm-10 col-xs-10 col-lg-10 col-md-10">
+
+        <div class="form-group">
+            <label for="title">Título</label>
             <input type="text" class="form-control" name="title" id="title" value="{{ $product->title ?? old( 'title' ) }}">
         </div>
 

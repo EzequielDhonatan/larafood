@@ -15,7 +15,7 @@
                         </li>
 
                         <li class="breadcrumb-item">
-                            <a href="{{ route( 'category.index' ) }}">Categorias</a>
+                            <a href="{{ route( 'product.index' ) }}">Categorias</a>
                         </li>
 
                         <li class="breadcrumb-item active" aria-current="page">
@@ -54,15 +54,23 @@
                             <ul>
 
                                 <li>
-                                    <strong>Nome:</strong> {{ $category->name }}
+                                    {{ $product->image }}
                                 </li>
 
                                 <li>
-                                    <strong>URL:</strong> {{ $category->url }}
+                                    <strong>Título:</strong> {{ $product->title }}
                                 </li>
 
                                 <li>
-                                    <strong>Descrição:</strong> {{ $category->description }}
+                                    <strong>Flag:</strong> {{ $product->flag }}
+                                </li>
+
+                                <li>
+                                    <strong>Flag:</strong> R${{ number_format( $product->price, 2, ',', ' ' ) }}
+                                </li>
+
+                                <li>
+                                    <strong>Descrição:</strong> {{ $product->description }}
                                 </li>
 
                             </ul> <!-- -->
@@ -78,7 +86,7 @@
                         <div class="col-sm-12 col-xs-12 col-lg-12 col-md-12">
 
                             <div class="form-group">
-                                <a class="btn btn-rounded btn-outline-primary" href="{{ route( 'category.index' ) }}">Voltar</a>
+                                <a class="btn btn-rounded btn-outline-primary" href="{{ route( 'product.index' ) }}">Voltar</a>
                             </div>
 
                         </div>

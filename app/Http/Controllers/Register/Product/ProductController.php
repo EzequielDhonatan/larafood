@@ -25,7 +25,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = $this->repository->latest()->paginate(); // Recupera, ordena e pagina
+        $products = $this->repository->latest()->paginate(); // Recupera, ordena e pagina todos os dados
 
         return view( 'pages.register.product.index', compact( 'products') ); // retorna a view
     }
@@ -48,9 +48,17 @@ class ProductController extends Controller
      */
     public function store( StoreUpdateFormRequest $request)
     {
-        $this->repository->create( $request->all() ); // Cadastra
+        $input = $request->all(); // Recupera todos os dados do input
+        $tenant = auth()->user()->tenant; // Recupera o tenant logado
 
-        return redirect()->route( 'product.index' ); // Retorna e redireciona para a view "index"
+        // Verifica se exite alguma imagem e se o formato da imagem é válido
+        if ( $request->hasFile( 'image' ) && $request->image->isValid() ) {
+            $input[ 'image' ] = $request->image->store( "tenants/{$tenant->uuid}/products" ); // Salva a imagem
+        }
+
+        $this->repository->create( $input ); // Cadastra o(s) registro(s)
+
+        return redirect()->route( 'product.index' ); // Retorna e redireciona para a view
     }
 
     /**
@@ -61,12 +69,11 @@ class ProductController extends Controller
      */
     public function show( $id )
     {
-        $product = $this->repository->find( $id ); // Recupera o pelo "$id"
+        // Verifica se não encontrou o registro pelo "$id"
+        if ( !$product = $this->repository->find( $id ) )
+            return redirect()->back(); // Retorna para a página de origem
 
-        if ( !$product )
-            return redirect()->back(); // Verifica se não encontrou o registro pelo "$id" e retorna para a página de origem
-
-        return view( 'pages.register.product.show', compact( 'product' ) ); // retorna a view
+        return view( 'pages.register.product.show', compact( 'product' ) ); // Retorna a view
     }
 
     /**
@@ -77,12 +84,11 @@ class ProductController extends Controller
      */
     public function edit( $id )
     {
-        $product = $this->repository->find( $id ); // Recupera o pelo "$id"
+        // Verifica se não encontrou o registro pelo "$id"
+        if ( !$product = $this->repository->find( $id ))
+            return redirect()->back(); // Retorna para a página de origem
 
-        if ( !$product )
-            return redirect()->back(); // Verifica se não encontrou o registro pelo "$id" e retorna para a página de origem
-
-        return view( 'pages.register.product.create-edit', compact( 'product' ) ); // retorna a view
+        return view( 'pages.register.product.create-edit', compact( 'product' ) ); // Retorna a view
     }
 
     /**
@@ -94,14 +100,21 @@ class ProductController extends Controller
      */
     public function update( Request $request, $id )
     {
-        $product = $this->repository->find( $id ); // Recupera o pelo "$id"
+        // Verifica se não encontrou o registro pelo "$id"
+        if ( !$product = $this->repository->find( $id ) )
+            return redirect()->back(); // Retorna para a origem da requisição
 
-        if ( !$product )
-            return redirect()->back(); // Verifica se não encontrou o registro pelo "$id" e retorna para a página de origem
+        $input = $request->all(); // Recupera todos os dados do input
+        $tenant = auth()->user()->tenant; // Recupera o tenant logado
 
-        $product->update( $request->all() ); // Atualiza
+        // Verifica se exite alguma imagem e se o formato da imagem é válido
+        if ( $request->hasFile( 'image' ) && $request->image->isValid() ) {
+            $input[ 'image' ] = $request->image->store( "tenants/{$tenant->uuid}/products" ); // Salva a imagem
+        }
 
-        return redirect()->route( 'product.index' ); // Retorna e redireciona para a view "index"
+        $product->update( $input ); // Atualiza o(s) registro(s)
+
+        return redirect()->route( 'product.index' ); // Retorna e redireciona para a view
     }
 
     /**
@@ -112,14 +125,13 @@ class ProductController extends Controller
      */
     public function destroy( $id )
     {
-        $product = $this->repository->find( $id ); // Recupera o pelo "$id"
+        // Verifica se não encontrou o registro pelo "$id"
+        if ( !$product = $this->repository->find( $id ) )
+            return redirect()->back(); // Retorna para a página de origem
 
-        if ( !$product )
-            return redirect()->back(); // Verifica se não encontrou o registro pelo "$id" e retorna para a página de origem
+        $product->delete(); // Deleta o registro
 
-        $product->delete(); // Deleta
-
-        return redirect()->route( 'product.index' ); // Retorna e redireciona para a view "index"
+        return redirect()->route( 'product.index' ); // Retorna e redireciona para a view
     }
 
     public function search( Request $request )
@@ -128,7 +140,7 @@ class ProductController extends Controller
 
         $products = $this->repository->search( $request->filter ); // Método "search" "Model Plan"
 
-        return view( 'pages.register.product.index', compact( 'products', 'filters' ) ); // retorna a view
+        return view( 'pages.register.product.index', compact( 'products', 'filters' ) ); // Retorna a view
     }
 
 } // ProductController

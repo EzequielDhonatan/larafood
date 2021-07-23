@@ -25,17 +25,24 @@ class StoreUpdateFormRequest extends FormRequest
     {
         $id = $this->segment( 3 );
 
-        return
+        $rules =
         [
             /* DADOS DO PRODUTO
             ================================================== */
             'category_id'                       => 'required',
             'title'                             => "required|min:3|max:255|unique:products,title,{$id},id",
             'flag'                              => 'required',
-            'image'                             => 'required',
+            'image'                             => 'required|image',
             'price'                             => "required|regex:/^\d+(\.\d{1,2})?$/",
-            'description'                       => 'nullable|min:3|max:255'
+            'description'                       => 'nullable|min:3|max:500'
 
-        ]; // return
+        ]; // rules
+
+        if ( $this->method() == 'PUT' ) {
+            $rules[ 'image' ] = [ 'nullable', 'image' ];
+        }
+
+        return $rules;
+
     } // rules
 } // StoreUpdateFormRequest

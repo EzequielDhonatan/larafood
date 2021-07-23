@@ -25,7 +25,9 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        $products = $this->repository->latest()->paginate(); // Recupera, ordena e pagina
+
+        return view( 'pages.register.product.index', compact( 'products') ); // retorna a view
     }
 
     /**
@@ -35,7 +37,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        return view( 'pages.register.product.create-edit' ); // Retorna a view
     }
 
     /**
@@ -44,9 +46,11 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store( StoreUpdateFormRequest $request)
     {
-        //
+        $this->repository->create( $request->all() ); // Cadastra
+
+        return redirect()->route( 'product.index' ); // Retorna e redireciona para a view "index"
     }
 
     /**
@@ -55,9 +59,14 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show( $id )
     {
-        //
+        $product = $this->repository->find( $id ); // Recupera o pelo "$id"
+
+        if ( !$product )
+            return redirect()->back(); // Verifica se não encontrou o registro pelo "$id" e retorna para a página de origem
+
+        return view( 'pages.register.product.show', compact( 'product' ) ); // retorna a view
     }
 
     /**
@@ -66,9 +75,14 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit( $id )
     {
-        //
+        $product = $this->repository->find( $id ); // Recupera o pelo "$id"
+
+        if ( !$product )
+            return redirect()->back(); // Verifica se não encontrou o registro pelo "$id" e retorna para a página de origem
+
+        return view( 'pages.register.product.create-edit', compact( 'product' ) ); // retorna a view
     }
 
     /**
@@ -78,9 +92,16 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update( Request $request, $id )
     {
-        //
+        $product = $this->repository->find( $id ); // Recupera o pelo "$id"
+
+        if ( !$product )
+            return redirect()->back(); // Verifica se não encontrou o registro pelo "$id" e retorna para a página de origem
+
+        $product->update( $request->all() ); // Atualiza
+
+        return redirect()->route( 'product.index' ); // Retorna e redireciona para a view "index"
     }
 
     /**
@@ -89,8 +110,25 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy( $id )
     {
-        //
+        $product = $this->repository->find( $id ); // Recupera o pelo "$id"
+
+        if ( !$product )
+            return redirect()->back(); // Verifica se não encontrou o registro pelo "$id" e retorna para a página de origem
+
+        $product->delete(); // Deleta
+
+        return redirect()->route( 'product.index' ); // Retorna e redireciona para a view "index"
     }
-}
+
+    public function search( Request $request )
+    {
+        $filters = $request->except( '_token' ); // Filtra, exceto o "token"
+
+        $products = $this->repository->search( $request->filter ); // Método "search" "Model Plan"
+
+        return view( 'pages.register.product.index', compact( 'products', 'filters' ) ); // retorna a view
+    }
+
+} // ProductController

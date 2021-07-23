@@ -14,6 +14,17 @@ class Product extends Model
 
     protected $fillable = [ 'category_id', 'title', 'flag', 'image', 'price', 'description' ];
 
+    public function search( $filter = null )
+    {
+        $results = $this->where( 'title', 'LIKE', "%{$filter}%" )
+                        ->orWhere( 'description', 'LIKE', "%{$filter}%" )
+                        ->latest()
+                        ->paginate();
+
+        return $results;
+
+    } // search
+
     public function categories()
     {
         return $this->belongsTo( Category::class );

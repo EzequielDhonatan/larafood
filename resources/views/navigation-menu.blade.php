@@ -49,6 +49,10 @@
                                 {{ __( 'Categorias' ) }}
                             </x-jet-dropdown-link>
 
+                            <x-jet-dropdown-link href="{{ route( 'product.index' ) }}">
+                                {{ __( 'Produtos' ) }}
+                            </x-jet-dropdown-link>
+
                         </x-slot>
 
                     </x-jet-dropdown>

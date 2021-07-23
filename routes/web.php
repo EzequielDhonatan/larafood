@@ -16,6 +16,7 @@ use App\Http\Controllers\{
     Register\DetailPlan\DetailPlanController, ## DETAIL PLAN
 
     Register\Category\CategoryController, ## CATEGORY
+    Register\Product\ProductController, ## PRODUCT
 
 };
 
@@ -44,5 +45,8 @@ Route::group(
 
     Route::resource( 'register/category', CategoryController::class ); ## CATEGORY
     Route::any( 'register/category/search', [ CategoryController::class, 'search' ] )->name( 'category.search' ); ## CATEGORY SEARCH
+
+    Route::resource( 'register/product', ProductController::class ); ## PRODUCT
+    Route::any( 'register/product/search', [ ProductController::class, 'search' ] )->name( 'product.search' ); ## PRODUCT SEARCH
 
 });

@@ -6,11 +6,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 use App\Tenant\Traits\TenantTrait;
+use App\Models\Register\Product\Product;
 
 class Category extends Model
 {
-    use HasFactory;
-    use TenantTrait;
+    use HasFactory, TenantTrait;
 
     protected $fillable = [ 'name', 'url', 'description' ];
 
@@ -24,5 +24,10 @@ class Category extends Model
         return $results;
 
     } // search
+
+    public function products()
+    {
+        return $this->belongsToMany( Product::class );
+    }
 
 } // Category

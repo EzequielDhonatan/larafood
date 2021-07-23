@@ -1,6 +1,6 @@
 <div class="row">
 
-    <div class="col-sm-10 col-xs-10 col-lg-10 col-md-10">
+    <div class="col-sm-12 col-xs-12 col-lg-12 col-md-12">
 
         <div class="form-group">
             <label for="image">Imagem</label>

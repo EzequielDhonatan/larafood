@@ -21,9 +21,13 @@ class TenantController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index( Request $request )
     {
-        return TenantResource::collection( $this->tenantService->getAllTenants() );
+        $per_page = ( int ) $request->get( 'per_page', 15 );
+
+        $tenants = $this->tenantService->getAllTenants( $per_page );
+
+        return TenantResource::collection( $tenants );
     }
 
     /**
@@ -45,7 +49,8 @@ class TenantController extends Controller
      */
     public function show( $uuid )
     {
-        $tenant = $this->tenantService->getTenantByUuid( $uuid );
+        if ( !$tenant = $this->tenantService->getTenantByUuid( $uuid ) )
+            return response()->json( [ 'message' => 'Not Found' ], 404 );
 
         return new TenantResource( $tenant );
     }

@@ -45,12 +45,20 @@
                                 {{ __( 'Planos' ) }}
                             </x-jet-dropdown-link>
 
+                            <x-jet-dropdown-link href="{{  route( 'plan.index' ) }}">
+                                {{ __( 'Empresas' ) }}
+                            </x-jet-dropdown-link>
+
                             <x-jet-dropdown-link href="{{ route( 'category.index' ) }}">
                                 {{ __( 'Categorias' ) }}
                             </x-jet-dropdown-link>
 
                             <x-jet-dropdown-link href="{{ route( 'product.index' ) }}">
                                 {{ __( 'Produtos' ) }}
+                            </x-jet-dropdown-link>
+
+                            <x-jet-dropdown-link href="#">
+                                {{ __( 'Mesas' ) }}
                             </x-jet-dropdown-link>
 
                         </x-slot>

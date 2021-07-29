@@ -18,6 +18,14 @@ use App\Observers\{
     Register\Product\ObserverProduct
 };
 
+use App\Repositories\Contracts\{
+    Tenant\TenantRepositoryInterface
+};
+
+use App\Repositories\{
+    Tenant\TenantRepository
+};
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -27,7 +35,12 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->bind(
+
+            TenantRepositoryInterface::class,
+            TenantRepository::class
+
+        ); //
     }
 
     /**

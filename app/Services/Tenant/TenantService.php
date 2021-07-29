@@ -5,11 +5,23 @@ namespace App\Services\Tenant;
 use Illuminate\Support\Facades\Hash;
 
 use App\Models\Register\Plan\Plan;
-use App\Models\User;
 
-class ServiceTenant
+use App\Repositories\Contracts\Tenant\TenantRepositoryInterface;
+
+class TenantService
 {
     private $plan, $input = [];
+    private $repository;
+
+    public function __construct( TenantRepositoryInterface $repository )
+    {
+        $this->repository = $repository;
+    }
+
+    public function getAllTenants()
+    {
+        return $this->repository->getAllTenants();
+    }
 
     public function make( Plan $plan, array $input )
     {
@@ -56,4 +68,4 @@ class ServiceTenant
 
     } // storeUser
 
-} // ServiceTenant
+} // TenantService

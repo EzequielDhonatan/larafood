@@ -73,7 +73,7 @@
 
                                     <div class="form-outline">
                                         <input type="text" class="form-control" id="filter" name="filter" value="{{ $filters[ 'filter' ] ?? '' }}"/>
-                                        <label class="form-label" for="filter">Nome</label>
+                                        <label class="form-label" for="filter">Título</label>
                                     </div>
 
                                     <button type="submit" class="btn btn-primary">

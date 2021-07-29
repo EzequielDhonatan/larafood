@@ -54,7 +54,7 @@
                             <ul>
 
                                 <li>
-                                <img style="max-width: 90px;" alt="{{ $product->title }}" src="{{ url( "storage/{$product->image}" ) }}">
+                                    <img style="max-width: 90px;" alt="{{ $product->title }}" src="{{ url( "storage/{$product->image}" ) }}">
                                 </li>
 
                                 <li>

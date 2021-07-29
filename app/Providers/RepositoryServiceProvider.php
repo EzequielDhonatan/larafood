@@ -5,11 +5,13 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 
 use App\Repositories\Contracts\{
-    Tenant\TenantRepositoryInterface
+    Tenant\TenantRepositoryInterface,
+    Category\CategoryRepositoryInterface
 };
 
 use App\Repositories\{
-    Tenant\TenantRepository
+    Tenant\TenantRepository,
+    Category\CategoryRepository
 };
 
 class RepositoryServiceProvider extends ServiceProvider
@@ -21,12 +23,9 @@ class RepositoryServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind(
+        $this->app->bind( TenantRepositoryInterface::class, TenantRepository::class );
+        $this->app->bind( CategoryRepositoryInterface::class, CategoryRepository::class );
 
-            TenantRepositoryInterface::class,
-            TenantRepository::class
-
-        ); //
     } // register
 
     /**

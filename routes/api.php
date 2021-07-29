@@ -4,10 +4,12 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Api\V1\{
-    Tenant\TenantController
+    Tenant\TenantController,
+    Category\CategoryController
 };
 
 Route::apiResource( 'tenants', TenantController::class );
+Route::get( 'categories', [ CategoryController::class, 'categoriesByTenant' ] );
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();

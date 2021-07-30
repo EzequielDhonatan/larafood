@@ -9,7 +9,9 @@ use App\Http\Controllers\Api\V1\{
 };
 
 Route::apiResource( 'tenants', TenantController::class );
+
 Route::get( 'categories', [ CategoryController::class, 'categoriesByTenant' ] );
+Route::get( 'categories/{url}', [ CategoryController::class, 'show' ] );
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
